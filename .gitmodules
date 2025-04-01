@@ -1,0 +1,6 @@
+[submodule "kernel_patches"]
+	path = kernel_patches
+	url = https://github.com/WildPlusKernel/kernel_patches.git
+[submodule "KernelSU-Next"]
+	path = KernelSU-Next
+	url = https://github.com/KernelSU-Next/KernelSU-Next

@@ -15,11 +15,11 @@ echo "ramfs_tmp = $RAMFS_TMP"
 cd $KERNELDIR
 
 if [[ "${1}" == "skip" ]] ; then
-	echo "Skipping Compilation"
+    echo "Skipping Compilation"
 else
-	echo "Compiling kernel"
-	cp defconfig .config
-	make "$@" || exit 1
+    echo "Compiling kernel"
+    cp defconfig .config
+    make -j"$(nproc)" "$@" || exit 1
 fi
 
 echo "Building new ramdisk"
@@ -46,7 +46,7 @@ ls -lh $RAMFS_TMP.cpio.lz4
 cd $KERNELDIR
 
 echo "Making new boot image"
-mkbootimg.py \
+mkbootimg \
     --kernel $KERNELDIR/arch/arm64/boot/Image.gz \
     --ramdisk $RAMFS_TMP.cpio.lz4 \
     --pagesize 4096 \
